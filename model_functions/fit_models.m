@@ -46,7 +46,7 @@ for iS = 1:num_subjects
     NLL_eval = zeros([iter, 1]); % container for negative log likelihood for each iteration
     fit_params = zeros([iter, num_params]); % container for best fit params for each iteration
 
-    parfor ii = 1:iter % NOTE: can switch off parallel processing by just putting 'for' if you're having problems
+    for ii = 1:iter % NOTE: can switch on parallel processing by putting 'parfor' to speed up if running more iterations (requires Parallel Computing toolbox) 
         [fit_params(ii,:), NLL_eval(ii)] = fmincon(model_func, init_params(ii,:), [], [], [], [], lb, ub, [], options);
     end
 
